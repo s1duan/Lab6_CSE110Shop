@@ -12,10 +12,10 @@ class ProductItem extends HTMLElement {
     img.width = 200
 
     const title = wrapper.appendChild(document.createElement('p'))
-    title.class = "title"
+    title.className = "title"
     
     const price = wrapper.appendChild(document.createElement('p'))
-    price.class = 'price'
+    price.className = 'price'
 
     const style = document.createElement('style')
     style.textContent = `.price {
