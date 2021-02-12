@@ -9,12 +9,13 @@ class ProductItem extends HTMLElement {
     wrapper.setAttribute("class", "product")
 
     const img = wrapper.appendChild(document.createElement('img'));
+    console.log(this.getAttribute('img'))
     img.src = this.getAttribute('img')
     img.alt = this.getAttribute('alt')
     img.width = 200
 
     const title = wrapper.appendChild(document.createElement('p'))
-    title.innerText = this.getAttribute('title')
+    title.setAttribute(innerText, this.getAttribute('title'))
     title.class = "title"
     
     const price = wrapper.appendChild(document.createElement('p'))
