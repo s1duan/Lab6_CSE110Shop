@@ -7,7 +7,6 @@ window.addEventListener('DOMContentLoaded', () => {
   fetch('https://fakestoreapi.com/products')
     .then(response => response.json())
     .then(data => {
-      console.log(data)
       for (var key in data) {
         localStorage.setItem(key, JSON.stringify(data[key]))
       }
@@ -17,10 +16,10 @@ window.addEventListener('DOMContentLoaded', () => {
     newCard = document.createElement("product-item")
     console.log(productInfo["title"])
     console.log(productInfo["image"])
-    newCard.img = productInfo["image"]
-    newCard.alt = productInfo['description']
-    newCard.title = productInfo["title"]
-    newCard.price = productInfo["price"]
+    newCard.setAttribute("img", productInfo["image"])
+    newCard.setAttribute("alt", productInfo['description'])
+    newCard.setAttribute("title", productInfo["title"])
+    newCard.setAttribute("price", productInfo["price"])
     product_list_container.appendChild(newCard)
   }
 });
