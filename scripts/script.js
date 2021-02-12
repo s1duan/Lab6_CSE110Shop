@@ -3,7 +3,6 @@ var product_list_container = document.getElementById("product-list");
 var localStorage = window.localStorage;
 
 window.addEventListener('DOMContentLoaded', () => {
-  document.getElementById()
   // check if local storage already contains the data
   fetch('https://fakestoreapi.com/products')
     .then(response => response.json())
