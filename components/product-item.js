@@ -15,7 +15,7 @@ class ProductItem extends HTMLElement {
     img.width = 200
 
     const title = wrapper.appendChild(document.createElement('p'))
-    title.setAttribute(innerText, this.getAttribute('title'))
+    title.innerText = this.getAttribute('title')
     title.class = "title"
     
     const price = wrapper.appendChild(document.createElement('p'))
