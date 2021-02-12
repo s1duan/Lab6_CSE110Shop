@@ -90,7 +90,12 @@ class ProductItem extends HTMLElement {
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
-    console.log("updating " + attrName)
+    console.log("attribute changed callback updating " + attrName)
+    updateElement(this)
+  }
+
+  connectedCallback(){
+    console.log("connected callback updating")
     updateElement(this)
   }
 }
