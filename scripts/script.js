@@ -3,6 +3,7 @@ var product_list_container = document.getElementById("product-list");
 var localStorage = window.localStorage;
 
 window.addEventListener('DOMContentLoaded', () => {
+  document.getElementById()
   // check if local storage already contains the data
   fetch('https://fakestoreapi.com/products')
     .then(response => response.json())
@@ -13,10 +14,10 @@ window.addEventListener('DOMContentLoaded', () => {
     })
   for (var i = 0; i < localStorage.length; i++){
     productInfo = JSON.parse(localStorage.getItem(localStorage.key(i)))
-    newCard = document.createElement("product-item", {img: productInfo["image"]})
+    newCard = document.createElement("product-item")
     console.log(productInfo["title"])
     console.log(productInfo["image"])
-    //newCard.setAttribute("img", productInfo["image"])
+    newCard.setAttribute("img", productInfo["image"])
     newCard.setAttribute("alt", productInfo['description'])
     newCard.setAttribute("title", productInfo["title"])
     newCard.setAttribute("price", productInfo["price"])

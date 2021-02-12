@@ -9,17 +9,12 @@ class ProductItem extends HTMLElement {
     wrapper.setAttribute("class", "product")
 
     const img = wrapper.appendChild(document.createElement('img'));
-    console.log(this.getAttribute('img'))
-    img.src = this.getAttribute('img')
-    img.alt = this.getAttribute('alt')
     img.width = 200
 
     const title = wrapper.appendChild(document.createElement('p'))
-    title.innerText = this.getAttribute('title')
     title.class = "title"
     
     const price = wrapper.appendChild(document.createElement('p'))
-    price.innerText = this.getAttribute('price')
     price.class = 'price'
 
     const style = document.createElement('style')
@@ -89,6 +84,23 @@ class ProductItem extends HTMLElement {
 
     this.shadowRoot.append(style, wrapper);
   }
+
+  static get observedAttribute(){
+    return ['img', 'alt', 'title', 'price']
+  }
+
+  attributeChangedCallback(attrName, oldVal, newVal) {
+    console.log("updating " + attrName)
+    updateElement(this)
+  }
+}
+
+function updateElement(elem) {
+  const shadow = elem.shadowRoot
+  shadow.querySelector('img').src = elem.getAttribute('img')
+  shadow.querySelector('img').alt = elem.getAttribute('alt')
+  shadow.querySelector('.title').innerText = elem.getAttribute('title')
+  shadow.querySelector('.price').innerText = elem.getAttribute('price')
 }
 
 customElements.define('product-item', ProductItem);
