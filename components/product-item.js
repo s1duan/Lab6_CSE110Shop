@@ -85,7 +85,8 @@ class ProductItem extends HTMLElement {
       overflow: auto;
       text-overflow: unset;
     }`
-    
+
+    this.shadowRoot.append(style, wrapper);
   }
 }
 
