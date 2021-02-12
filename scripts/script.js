@@ -1,4 +1,6 @@
 // Script.js
+var product_list_container = document.getElementById("product-list");
+var localStorage = window.localStorage;
 
 window.addEventListener('DOMContentLoaded', () => {
   // check if local storage already contains the data
@@ -7,8 +9,16 @@ window.addEventListener('DOMContentLoaded', () => {
     .then(data => {
       console.log(data)
       for (var key in data) {
-        console.log(data[key])
-        window.localStorage.setItem(key, JSON.stringify(data[key]))
+        localStorage.setItem(key, JSON.stringify(data[key]))
       }
     })
+  for (var i = 0; i < localStorage.length; i++){
+    productInfo = JSON.parse(localStorage.getItem(localStorage.key(i)))
+    newCard = document.createElement("product-item")
+    newCard.img = productInfo["image"]
+    newCard.alt = productInfo['description']
+    newCard.title = productInfo["title"]
+    newCard.price = productInfo["price"]
+    product_list_container.appendChild(newCard)
+  }
 });
