@@ -15,6 +15,7 @@ window.addEventListener('DOMContentLoaded', () => {
   for (var i = 0; i < localStorage.length; i++){
     productInfo = JSON.parse(localStorage.getItem(localStorage.key(i)))
     newCard = document.createElement("product-item")
+    console.log(productInfo["title"])
     newCard.img = productInfo["image"]
     newCard.alt = productInfo['description']
     newCard.title = productInfo["title"]
