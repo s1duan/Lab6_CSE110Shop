@@ -18,8 +18,10 @@ class ProductItem extends HTMLElement {
     price.className = 'price'
 
     const button = wrapper.appendChild(document.createElement('button'))
-    button.onclick = alert('Added to cart!')
-    
+    button.onclick = function() {
+      alert('Added to cart!')
+    }
+
     const style = document.createElement('style')
     style.textContent = `.price {
       color: green;
