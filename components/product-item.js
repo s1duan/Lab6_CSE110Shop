@@ -109,7 +109,7 @@ function updateElement(elem) {
   shadow.querySelector('img').alt = elem.getAttribute('alt')
   shadow.querySelector('.title').innerText = elem.getAttribute('title')
   shadow.querySelector('.price').innerText = elem.getAttribute('price')
-  
+
   var cart = document.getElementById('cart-count')
   var button = shadow.querySelector('button')
   button.onclick = function() {
@@ -121,13 +121,17 @@ function updateElement(elem) {
     var myCart = localStorage.getItem("cart")
     var productId = elem.getAttribute('id')
     if (button.innerHTML == "Add"){
-      cart.innerHTML = cartCount + 1
-      localStorage.setItem("cart", myCart + productId + " ")
+      if (!myCart.includes(productId + " ")){
+        localStorage.setItem("cart", myCart + productId + " ")
+      }
+      cart.innerHTML = localStorage.getItem("cart").split(" ").length - 1 
       button.innerHTML = "Remove"
     }
     else {
-      cart.innerHTML = cartCount - 1
-      localStorage.setItem("cart", myCart. replace(productId + " ", ""))
+      if (myCart.includes(productId + " ")){
+        localStorage.setItem("cart", myCart.replace(productId + " ", ""))
+      }
+      cart.innerHTML = localStorage.getItem("cart").split(" ").length - 1
       button.innerHTML = "Add"
     }
   }
