@@ -110,27 +110,32 @@ function updateElement(elem) {
   shadow.querySelector('.price').innerText = elem.getAttribute('price')
 
   var cart = document.getElementById('cart-count')
+  var itemList = localStorage.getItem("cart").split(" ")
   var button = shadow.querySelector('button')
+  var productId = elem.getAttribute('id')
+
+  if (itemList.includes(productId)){
+    button.innerHTML = "Remove"
+  }
+  else {
+    button.innerHTML = "Add"
+  }
+
   button.onclick = function() {
-    var cartCount = parseInt(cart.textContent)
-    // create storage if first time clicked
-    if (localStorage.getItem("cart") === null){
-      localStorage.setItem("cart", "")
-    }
     var myCart = localStorage.getItem("cart")
-    var productId = elem.getAttribute('id')
+    var cartCount = parseInt(cart.innerHTML)
     if (button.innerHTML == "Add"){
-      if (!myCart.includes(productId + " ")){
+      if (!myCart.split(" ").includes(productId)){
         localStorage.setItem("cart", myCart + productId + " ")
+        cart.innerHTML = cartCount + 1
       }
-      cart.innerHTML = localStorage.getItem("cart").split(" ").length - 1 
       button.innerHTML = "Remove"
     }
     else {
-      if (myCart.includes(productId + " ")){
+      if (myCart.split(" ").includes(productId)){
         localStorage.setItem("cart", myCart.replace(productId + " ", ""))
+        cart.innerHTML = cartCount - 1
       }
-      cart.innerHTML = localStorage.getItem("cart").split(" ").length - 1
       button.innerHTML = "Add"
     }
   }

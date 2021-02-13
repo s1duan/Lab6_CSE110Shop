@@ -4,6 +4,10 @@ var localStorage = window.localStorage;
 var cart = document.getElementById("cart-count")
 
 window.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem("cart") === null){
+    localStorage.setItem("cart", "")
+  }
+  
   // check if local storage already contains the data
   fetch('https://fakestoreapi.com/products')
     .then(response => response.json())
