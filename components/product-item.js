@@ -18,7 +18,6 @@ class ProductItem extends HTMLElement {
     price.className = 'price'
 
     const button = wrapper.appendChild(document.createElement('button'))
-    button.innerHTML = "Add"
 
     const style = document.createElement('style')
     style.textContent = `.price {
