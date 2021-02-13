@@ -18,9 +18,7 @@ class ProductItem extends HTMLElement {
     price.className = 'price'
 
     const button = wrapper.appendChild(document.createElement('button'))
-    button.onclick = function() {
-      alert('Added to cart!')
-    }
+    button.innerHTML = "Add"
 
     const style = document.createElement('style')
     style.textContent = `.price {
@@ -111,6 +109,28 @@ function updateElement(elem) {
   shadow.querySelector('img').alt = elem.getAttribute('alt')
   shadow.querySelector('.title').innerText = elem.getAttribute('title')
   shadow.querySelector('.price').innerText = elem.getAttribute('price')
+  
+  var cart = document.getElementById('cart-count')
+  var button = shadow.querySelector('button')
+  button.onclick = function() {
+    var cartCount = parseInt(cart.textContent)
+    // create storage if first time clicked
+    if (localStorage.getItem("cart") === null){
+      localStorage.setItem("cart", "")
+    }
+    var myCart = localStorage.getItem("cart")
+    var productId = elem.getAttribute('id')
+    if (button.innerHTML == "Add"){
+      cart.innerHTML = cartCount + 1
+      localStorage.setItem("cart", myCart + productId + " ")
+      button.innerHTML = "Remove"
+    }
+    else {
+      cart.innerHTML = cartCount - 1
+      localStorage.setItem("cart", myCart. replace(productId + " ", ""))
+      button.innerHTML = "Add"
+    }
+  }
 }
 
 customElements.define('product-item', ProductItem);

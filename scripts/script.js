@@ -12,14 +12,15 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     })
   for (var i = 0; i < localStorage.length; i++){
-    productInfo = JSON.parse(localStorage.getItem(localStorage.key(i)))
-    newCard = document.createElement("product-item")
-    console.log(productInfo["title"])
-    console.log(productInfo["image"])
-    newCard.setAttribute("img", productInfo["image"])
-    newCard.setAttribute("alt", productInfo['description'])
-    newCard.setAttribute("title", productInfo["title"])
-    newCard.setAttribute("price", productInfo["price"])
-    product_list_container.appendChild(newCard)
+    var productInfo = JSON.parse(localStorage.getItem(localStorage.key(i)))
+    if (productInfo.hasOwnProperty('title') && productInfo.hasOwnProperty('image')){
+      newCard = document.createElement("product-item")
+      newCard.setAttribute("img", productInfo["image"])
+      newCard.setAttribute("alt", productInfo['description'])
+      newCard.setAttribute("title", productInfo["title"])
+      newCard.setAttribute("price", productInfo["price"])
+      newCard.setAttribute("id", productInfo["id"])
+      product_list_container.appendChild(newCard)
+    }
   }
 });
